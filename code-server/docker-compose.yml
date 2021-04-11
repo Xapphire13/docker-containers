@@ -1,0 +1,20 @@
+services:
+  code-server:
+    build: .
+    container_name: code-server
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - DOCKER_USER=xapphire13
+      - USER=xapphire13
+      - SERVICE_URL=https://open-vsx.org/vscode/gallery
+      - ITEM_URL=https://open-vsx.org/vscode/item
+    volumes:
+      - /home/xapphire13/.config:/home/coder/.config
+      - /home/xapphire13:/home/coder/project
+      - code-server:/home/coder/.local/share/code-server
+    ports:
+      - 127.0.0.1:8080:8080
+    restart: unless-stopped
+volumes:
+  code-server:
